@@ -53,9 +53,8 @@ if ($AllPages)
                         @{N="Name";E={$_.Name}},`
                         @{N="Host";E={$_.Host}},`
                         @{N="Reporting";E={$_.Reporting}},`
+                        @{N="LastReportedAt";E={"$(Get-Date "$($_.last_reported_at)" -Format G) $([TimeZoneInfo]::Local.BaseUtcOffset.ToString())"}},`
                         @{N="HealthStatus";E={$_.health_status}},`
-                        @{N="LastReportedAt";E={$_.last_reported_at}},`
-                        @{N="CPUPercentage";E={$_.summary.cpu}},`
                         @{N="CPU";E={if($_.summary.cpu){"$($_.summary.cpu)%"}}},`
                         @{N="CPUStolen";E={$_.summary.cpu_stolen}},`
                         @{N="Memory";E={if($_.summary.memory){"$($_.summary.memory)%"}}},`
@@ -89,16 +88,8 @@ else
                     @{N="Name";E={$_.Name}},`
                     @{N="Host";E={$_.Host}},`
                     @{N="Reporting";E={$_.Reporting}},`
+                    @{N="LastReportedAt";E={"$(Get-Date "$($_.last_reported_at)" -Format G) $([TimeZoneInfo]::Local.BaseUtcOffset.ToString())"}},`
                     @{N="HealthStatus";E={$_.health_status}},`
-                    @{N="LastReportedAt";E={$_.last_reported_at}},`
-                    @{N="CPUPercentage";E={$_.summary.cpu}},`
-                    @{N="CPUStolen";E={$_.summary.cpu_stolen}},`
-                    @{N="MemoryPercentage";E={$_.summary.memory}},`
-                    @{N="MemoryUsed";E={$_.summary.memory_used}},`
-                    @{N="MemoryTotal";E={$_.summary.memory_total}},`
-                    @{N="DiskIO";E={$_.summary.disk_io}},`
-                    @{N="FullestDisk";E={$_.summary.fullest_disk}},`
-                    @{N="FullestDiskFree";E={$_.summary.fullest_disk_free}}
                     @{N="CPU";E={if($_.summary){"$($_.summary.cpu)%"}}},`
                     @{N="CPUStolen";E={$_.summary}},`
                     @{N="Memory";E={if($_.summary){"$($_.summary.memory)%"}}},`

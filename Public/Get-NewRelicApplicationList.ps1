@@ -53,6 +53,7 @@ if ($AllPages)
                         @{N="Name";E={$_.Name}},`
                         @{N="Language";E={$_.Language}},`
                         @{N="Reporting";E={$_.Reporting}},`
+                        @{N="LastReportedAt";E={"$(Get-Date "$($_.last_reported_at)" -Format G) $([TimeZoneInfo]::Local.BaseUtcOffset.ToString())"}},`
                         @{N="HealthStatus";E={$_.health_status}},`
                         @{N="Throughput";E={$_.application_summary.throughput}},`
                         @{N="ResponseTime";E={$_.application_summary.response_time}},`
@@ -86,6 +87,7 @@ else
                     @{N="Name";E={$_.Name}},`
                     @{N="Language";E={$_.Language}},`
                     @{N="Reporting";E={$_.Reporting}},`
+                    @{N="LastReportedAt";E={"$(Get-Date "$($_.last_reported_at)" -Format G) $([TimeZoneInfo]::Local.BaseUtcOffset.ToString())"}},`
                     @{N="HealthStatus";E={$_.health_status}},`
                     @{N="Throughput";E={$_.application_summary.throughput}},`
                     @{N="ResponseTime";E={$_.application_summary.response_time}},`
