@@ -2,6 +2,9 @@
     [cmdletbinding(DefaultParameterSetName="AllPages")]
     Param
     (
+      [parameter(Mandatory=$false)]
+      [string]
+      $Name,
       [parameter(Mandatory=$false,ParameterSetName="PageNum")]
       [int]
       $PageNumber=1,
@@ -18,6 +21,19 @@
 $headers = @{
     "X-Api-Key" = $APIKey
     }
+$body = @{}
+$RestParams=@{
+    Method = "Get"
+    ContentType = "application/json"
+    Headers = $headers
+    }
+if ($Name){
+    $body.Add("filter[name]",$Name)
+    }
+if($body.Count)
+    {
+    $RestParams.Add("Body",$body)
+    }
 if ($AllPages)
     {
     $response = @()
@@ -28,7 +44,7 @@ if ($AllPages)
             {
             $i++
             $URI = "https://api.newrelic.com/v2/applications.json?page=$i"
-            $result = Invoke-RestMethod -Method Get -Uri $URI -ContentType "application/json" -Headers $headers | Select-Object -ExpandProperty applications
+            $result = Invoke-RestMethod -Uri $URI @RestParams | Select-Object -ExpandProperty applications
             if(!$Raw)
                 {
                 $result = $result | 
@@ -61,7 +77,7 @@ else
     try
         {
         $URI = "https://api.newrelic.com/v2/applications.json?page=$PageNumber"
-        $response = Invoke-RestMethod -Method Get -Uri $URI -ContentType "application/json" -Headers $headers | Select-Object -ExpandProperty applications
+        $response = Invoke-RestMethod -Uri $URI @RestParams | Select-Object -ExpandProperty applications
         if(!$Raw)
             {
             $response = $response | 
