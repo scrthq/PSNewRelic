@@ -53,14 +53,14 @@ if ($AllPages)
                         @{N="Name";E={$_.Name}},`
                         @{N="Language";E={$_.Language}},`
                         @{N="Reporting";E={$_.Reporting}},`
-                        @{N="App_HealthStatus";E={$_.health_status}},`
-                        @{N="App_Throughput";E={$_.application_summary.throughput}},`
-                        @{N="App_ResponseTime";E={$_.application_summary.response_time}},`
-                        @{N="App_ErrorRate";E={$_.application_summary.error_rate}},`
-                        @{N="App_ApdexTarget";E={$_.application_summary.apdex_target}},`
-                        @{N="App_ApdexScore";E={$_.application_summary.apdex_score}},`
-                        @{N="App_HostCount";E={$_.application_summary.host_count}},`
-                        @{N="App_InstanceCount";E={$_.application_summary.instance_count}}
+                        @{N="HealthStatus";E={$_.health_status}},`
+                        @{N="Throughput";E={$_.application_summary.throughput}},`
+                        @{N="ResponseTime";E={$_.application_summary.response_time}},`
+                        @{N="ErrorRate";E={$_.application_summary.error_rate}},`
+                        @{N="ApdexTarget";E={$_.application_summary.apdex_target}},`
+                        @{N="ApdexScore";E={$_.application_summary.apdex_score}},`
+                        @{N="HostCount";E={$_.application_summary.host_count}},`
+                        @{N="InstanceCount";E={$_.application_summary.instance_count}}
                 }
             $response += $result
             }
@@ -86,14 +86,14 @@ else
                     @{N="Name";E={$_.Name}},`
                     @{N="Language";E={$_.Language}},`
                     @{N="Reporting";E={$_.Reporting}},`
-                    @{N="App_HealthStatus";E={$_.health_status}},`
-                    @{N="App_Throughput";E={$_.application_summary.throughput}},`
-                    @{N="App_ResponseTime";E={$_.application_summary.response_time}},`
-                    @{N="App_ErrorRate";E={$_.application_summary.error_rate}},`
-                    @{N="App_ApdexTarget";E={$_.application_summary.apdex_target}},`
-                    @{N="App_ApdexScore";E={$_.application_summary.apdex_score}},`
-                    @{N="App_HostCount";E={$_.application_summary.host_count}},`
-                    @{N="App_InstanceCount";E={$_.application_summary.instance_count}}
+                    @{N="HealthStatus";E={$_.health_status}},`
+                    @{N="Throughput";E={$_.application_summary.throughput}},`
+                    @{N="ResponseTime";E={$_.application_summary.response_time}},`
+                    @{N="ErrorRate";E={$_.application_summary.error_rate}},`
+                    @{N="ApdexTarget";E={$_.application_summary.apdex_target}},`
+                    @{N="ApdexScore";E={$_.application_summary.apdex_score}},`
+                    @{N="HostCount";E={$_.application_summary.host_count}},`
+                    @{N="InstanceCount";E={$_.application_summary.instance_count}}
             }
         }
     catch
