@@ -9,6 +9,9 @@
       [switch]
       $AllPages=$true,
       [parameter(Mandatory=$false)]
+      [switch]
+      $Raw,
+      [parameter(Mandatory=$false)]
       [String]
       $APIKey=$Script:PSNewRelic.APIKey
     )
@@ -26,19 +29,61 @@ if ($AllPages)
             $i++
             $URI = "https://api.newrelic.com/v2/applications.json?page=$i"
             $result = Invoke-RestMethod -Method Get -Uri $URI -ContentType "application/json" -Headers $headers | Select-Object -ExpandProperty applications
+            if(!$Raw)
+                {
+                $result = $result | 
+                    Select-Object -Property `
+                        @{N="ID";E={$_.ID}},`
+                        @{N="Name";E={$_.Name}},`
+                        @{N="Language";E={$_.Language}},`
+                        @{N="Reporting";E={$_.Reporting}},`
+                        @{N="App_HealthStatus";E={$_.health_status}},`
+                        @{N="App_Throughput";E={$_.application_summary.throughput}},`
+                        @{N="App_ResponseTime";E={$_.application_summary.response_time}},`
+                        @{N="App_ErrorRate";E={$_.application_summary.error_rate}},`
+                        @{N="App_ApdexTarget";E={$_.application_summary.apdex_target}},`
+                        @{N="App_ApdexScore";E={$_.application_summary.apdex_score}},`
+                        @{N="App_HostCount";E={$_.application_summary.host_count}},`
+                        @{N="App_InstanceCount";E={$_.application_summary.instance_count}}
+                }
             $response += $result
             }
         catch
             {
             Write-Error $Error[0]
+            return
             }
         }
     until (!$result)
     }
 else
     {
-    $URI = "https://api.newrelic.com/v2/applications.json?page=$PageNumber"
-    $response = Invoke-RestMethod -Method Get -Uri $URI -ContentType "application/json" -Headers $headers | Select-Object -ExpandProperty applications
-    }
+    try
+        {
+        $URI = "https://api.newrelic.com/v2/applications.json?page=$PageNumber"
+        $response = Invoke-RestMethod -Method Get -Uri $URI -ContentType "application/json" -Headers $headers | Select-Object -ExpandProperty applications
+        if(!$Raw)
+            {
+            $response = $response | 
+                Select-Object -Property `
+                    @{N="ID";E={$_.ID}},`
+                    @{N="Name";E={$_.Name}},`
+                    @{N="Language";E={$_.Language}},`
+                    @{N="Reporting";E={$_.Reporting}},`
+                    @{N="App_HealthStatus";E={$_.health_status}},`
+                    @{N="App_Throughput";E={$_.application_summary.throughput}},`
+                    @{N="App_ResponseTime";E={$_.application_summary.response_time}},`
+                    @{N="App_ErrorRate";E={$_.application_summary.error_rate}},`
+                    @{N="App_ApdexTarget";E={$_.application_summary.apdex_target}},`
+                    @{N="App_ApdexScore";E={$_.application_summary.apdex_score}},`
+                    @{N="App_HostCount";E={$_.application_summary.host_count}},`
+                    @{N="App_InstanceCount";E={$_.application_summary.instance_count}}
+            }
+        }
+    catch
+        {
+        Write-Error $Error[0]
+        return
+        }
 return $response
 }
