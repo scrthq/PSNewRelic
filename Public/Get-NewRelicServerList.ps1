@@ -100,6 +100,7 @@ else
                     @{N="FullestDiskFree";E={if($_.summary){"$([math]::round($($_.summary.fullest_disk_free / 1GB),2)) GB"}}}
             }
         }
+
     catch
         {
         Write-Error $Error[0]
