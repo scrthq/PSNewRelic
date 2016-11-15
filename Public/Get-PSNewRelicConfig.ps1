@@ -24,6 +24,6 @@ else
                     $string))
             }
         }
-    Import-Clixml -Path $Path | Select -Property @{N='APIKey';E={Decrypt $_.APIKey}}
+    Import-Clixml -Path $Path | Select -Property @{N="AccountID";E={Decrypt $_.AccountID}},@{N='APIKey';E={Decrypt $_.APIKey}},@{N='AdminAPIKey';E={Decrypt $_.AdminAPIKey}},@{N='InsightsInsertKey';E={Decrypt $_.InsightsInsertKey}},@{N='InsightsQueryKey';E={Decrypt $_.InsightsQueryKey}}
     }
 }
