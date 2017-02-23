@@ -9,7 +9,7 @@
 @{
 
 # Script module or binary module file associated with this manifest.
-RootModule = 'PSGoogle.psm1'
+RootModule = 'PSNewRelic.psm1'
 
 # Version number of this module.
 ModuleVersion = '0.0.2'
@@ -66,7 +66,7 @@ PowerShellHostVersion = '3.0'
 # NestedModules = @()
 
 # Functions to export from this module
-FunctionsToExport = 'Get-Function'
+FunctionsToExport = '*'
 
 # Cmdlets to export from this module
 CmdletsToExport = '*'
