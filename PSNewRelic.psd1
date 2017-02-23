@@ -12,7 +12,7 @@
 RootModule = 'PSNewRelic.psm1'
 
 # Version number of this module.
-ModuleVersion = '0.0.2'
+ModuleVersion = '0.8'
 
 # ID used to uniquely identify this module
 GUID = 'bd4390dc-a8ad-4bce-8d69-f53ccf8e4163'
