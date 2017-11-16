@@ -12,7 +12,7 @@
 RootModule = 'PSNewRelic.psm1'
 
 # Version number of this module.
-ModuleVersion = '0.8.3'
+ModuleVersion = '0.8.4'
 
 # ID used to uniquely identify this module
 GUID = '74edd52d-25ca-4156-8657-2bd90747f95d'
@@ -36,7 +36,7 @@ PowerShellVersion = '3.0'
 # PowerShellHostName = ''
 
 # Minimum version of the Windows PowerShell host required by this module
-PowerShellHostVersion = '3.0'
+# PowerShellHostVersion = '3.0'
 
 # Minimum version of Microsoft .NET Framework required by this module
 # DotNetFrameworkVersion = ''
@@ -66,12 +66,7 @@ FormatsToProcess = @()
 # NestedModules = @()
 
 # Functions to export from this module
-FunctionsToExport = 'Get-NewRelicApplicationHostList', 'Get-NewRelicApplicationList', 
-               'Get-NewRelicDeploymentList', 'Get-NewRelicServerList', 
-               'Get-NewRelicSyntheticsMonitorList', 
-               'Get-NewRelicSyntheticsSLAReport', 'Get-PSNewRelicConfig', 
-               'Invoke-NewRelicInsightsQuery', 'Invoke-NRQLQuery', 
-               'Set-PSNewRelicConfig'
+FunctionsToExport = '*'
 
 # Cmdlets to export from this module
 CmdletsToExport = @()
@@ -97,16 +92,16 @@ PrivateData = @{
     PSData = @{
 
         # Tags applied to this module. These help with module discovery in online galleries.
-        # Tags = @()
+        Tags = 'New','Relic','NewRelic','APM','Insights','NRQL','Synthetics'
 
         # A URL to the license for this module.
-        # LicenseUri = ''
+        LicenseUri = 'https://raw.githubusercontent.com/nferrell/PSNewRelic/master/LICENSE'
 
         # A URL to the main website for this project.
-        # ProjectUri = ''
+        ProjectUri = 'https://github.com/nferrell/PSNewRelic'
 
         # A URL to an icon representing this module.
-        # IconUri = ''
+        IconUri = 'https://blog.layershift.com/wp-content/uploads/2015/12/New-Relic-Jelastic.png'
 
         # ReleaseNotes of this module
         # ReleaseNotes = ''
@@ -115,8 +110,8 @@ PrivateData = @{
         # ExternalModuleDependencies = ''
 
     } # End of PSData hashtable
-
-} # End of PrivateData hashtable
+    
+ } # End of PrivateData hashtable
 
 # HelpInfo URI of this module
 # HelpInfoURI = ''

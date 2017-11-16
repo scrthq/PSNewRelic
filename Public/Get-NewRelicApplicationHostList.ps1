@@ -37,7 +37,7 @@ if ($AllPages)
                 $result = $result |
                     Select-Object -Property `
                         @{N="Host_ID";E={$_.ID}},`
-                        @{N="Host_Name";E={$_.Language}},`
+                        @{N="Host_Name";E={$_.host}},`
                         @{N="App_Name";E={$_.Name}},`
                         @{N="App_Language";E={$_.Language}},`
                         @{N="App_HealthStatus";E={$_.health_status}},`
